@@ -965,6 +965,43 @@
       fill: currentColor;
     }
 
+    /* Video embed thumbnail / click-to-load */
+    .video-embed {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+      display: block;
+    }
+
+    .video-embed img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-embed .play-overlay {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -1395,16 +1432,28 @@
             <h2 class="video-title">Project Videos</h2>
             <div class="video-grid">
               <div class="video-card">
-                <iframe src="https://youtu.be/mqpajulY9Q4" allowfullscreen></iframe>
+                <div class="video-embed" data-video-id="mqpajulY9Q4" role="button" tabindex="0" aria-label="Play video demo 1">
+                  <img src="https://i.ytimg.com/vi/mqpajulY9Q4/hqdefault.jpg" alt="Video thumbnail">
+                  <div class="play-overlay">▶</div>
+                </div>
               </div>
               <div class="video-card">
-                <iframe src="https://youtu.be/HT7G0se__pw" allowfullscreen></iframe>
+                <div class="video-embed" data-video-id="HT7G0se__pw" role="button" tabindex="0" aria-label="Play video demo 2">
+                  <img src="https://i.ytimg.com/vi/HT7G0se__pw/hqdefault.jpg" alt="Video thumbnail">
+                  <div class="play-overlay">▶</div>
+                </div>
               </div>
               <div class="video-card">
-                <iframe src="https://youtu.be/-QjP5-ebiac" allowfullscreen></iframe>
+                <div class="video-embed" data-video-id="-QjP5-ebiac" role="button" tabindex="0" aria-label="Play video demo 3">
+                  <img src="https://i.ytimg.com/vi/-QjP5-ebiac/hqdefault.jpg" alt="Video thumbnail">
+                  <div class="play-overlay">▶</div>
+                </div>
               </div>
               <div class="video-card">
-                <iframe src="https://youtube.com/shorts/pw-Hgqxx1wE?feature=share" allowfullscreen></iframe>
+                <div class="video-embed" data-video-id="pw-Hgqxx1wE" role="button" tabindex="0" aria-label="Play video short">
+                  <img src="https://i.ytimg.com/vi/pw-Hgqxx1wE/hqdefault.jpg" alt="Video thumbnail">
+                  <div class="play-overlay">▶</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1702,6 +1751,44 @@
       }
       // ensure initial position
       updateCarousel();
+    })();
+
+    // Video click-to-load: inject iframe with origin param or fallback to watch page
+    (function initVideoEmbeds() {
+      function loadVideo(placeholder) {
+        const id = placeholder.dataset.videoId;
+        if (!id) return;
+        const iframe = document.createElement('iframe');
+        const origin = encodeURIComponent(window.location.origin);
+        iframe.src = `https://www.youtube.com/embed/${id}?rel=0&showinfo=0&origin=${origin}`;
+        iframe.title = placeholder.getAttribute('aria-label') || 'Project video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.loading = 'lazy';
+        // Replace placeholder with iframe
+        placeholder.parentNode.replaceChild(iframe, placeholder);
+      }
+
+      const placeholders = Array.from(document.querySelectorAll('.video-embed'));
+      placeholders.forEach((ph) => {
+        ph.addEventListener('click', () => {
+          try {
+            loadVideo(ph);
+          } catch (err) {
+            // fallback: open watch page in new tab
+            const id = ph.dataset.videoId;
+            if (id) window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
+          }
+        });
+        ph.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            ph.click();
+          }
+        });
+      });
     })();
   </script>
 </body>

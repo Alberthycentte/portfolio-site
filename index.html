@@ -1748,33 +1748,43 @@
     const themeToggle = document.querySelector(".theme-toggle");
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
 
-    // Initialize theme from localStorage (if present)
+    // SVG icons for toggle (planet for dark, sun for light)
+    const ICONS = {
+      dark: '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>',
+      light: '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.8L6.76 4.84zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zm7.24-2.76l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79zM20 11v2h3v-2h-3zM6.76 19.16l-1.79 1.79 1.79 1.79 1.79-1.79-1.79-1.79zM12 6a6 6 0 100 12A6 6 0 0012 6z" fill="currentColor"/></svg>'
+    };
+
+    function applyLight() {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      themeIcon.innerHTML = ICONS.light;
+      themeToggle.setAttribute('aria-pressed', 'true');
+    }
+
+    function applyDark() {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+      themeIcon.innerHTML = ICONS.dark;
+      themeToggle.setAttribute('aria-pressed', 'false');
+    }
+
+    // Initialize: default to dark unless user previously selected light
     (function initTheme() {
       const stored = localStorage.getItem('theme');
-      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-      if (stored === 'light' || (!stored && prefersLight)) {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeIcon.textContent = '☀️';
-        themeToggle.setAttribute('aria-pressed', 'true');
+      if (stored === 'light') {
+        applyLight();
       } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeIcon.textContent = '🌙';
-        themeToggle.setAttribute('aria-pressed', 'false');
+        // default: dark
+        applyDark();
       }
     })();
 
     themeToggle.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       if (current === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-        themeIcon.textContent = '🌙';
-        themeToggle.setAttribute('aria-pressed', 'false');
+        applyDark();
       } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        themeIcon.textContent = '☀️';
-        themeToggle.setAttribute('aria-pressed', 'true');
+        applyLight();
       }
     });
 

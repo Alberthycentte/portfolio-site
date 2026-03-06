@@ -682,6 +682,22 @@
       border-radius: var(--radius-lg);
     }
 
+    /* Make carousel images responsive on small screens */
+    @media (max-width: 768px) {
+      .carousel-slide img {
+        height: auto;
+        aspect-ratio: 16/9;
+      }
+      /* Ensure video grid collapses appropriately */
+      .video-grid {
+        grid-template-columns: 1fr !important;
+      }
+      /* Avoid horizontal overflow from long headings or wide elements */
+      .page-shell, .section, .projects-grid {
+        max-width: 100vw;
+      }
+    }
+
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -985,7 +1001,8 @@
     .video-embed {
       position: relative;
       width: 100%;
-      height: 220px;
+      height: auto;
+      aspect-ratio: 16/9;
       border-radius: var(--radius-md);
       overflow: hidden;
       background: #000;

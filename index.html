@@ -36,21 +36,7 @@
       --transition-med: 0.25s ease-out;
     }
 
-    /* Light theme variables (applied when [data-theme="light"] is set on html) */
-    html[data-theme="light"] {
-      --bg: #f8fafc;
-      --bg-alt: #f1f5f9;
-      --card-bg: #ffffff;
-      --card-border: rgba(15, 23, 42, 0.06);
-      --accent: #0b6cf6;
-      --accent-soft: rgba(11,108,246,0.12);
-      --accent-strong: #0753c9;
-      --accent-green: #16a34a;
-      --text: #0b1220;
-      --text-muted: #475569;
-      --shadow-soft: 0 12px 30px rgba(2,6,23,0.06);
-      --shadow-subtle: 0 6px 18px rgba(2,6,23,0.04);
-    }
+    /* Light theme removed: dark theme is the only theme. */
 
     * ,
     *::before,
@@ -1748,44 +1734,14 @@
     const themeToggle = document.querySelector(".theme-toggle");
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
 
-    // SVG icons for toggle (planet for dark, sun for light)
-    const ICONS = {
-      dark: '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>',
-      light: '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.8L6.76 4.84zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zm7.24-2.76l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79zM20 11v2h3v-2h-3zM6.76 19.16l-1.79 1.79 1.79 1.79 1.79-1.79-1.79-1.79zM12 6a6 6 0 100 12A6 6 0 0012 6z" fill="currentColor"/></svg>'
-    };
-
-    function applyLight() {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-      themeIcon.innerHTML = ICONS.light;
-      themeToggle.setAttribute('aria-pressed', 'true');
-    }
-
-    function applyDark() {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'dark');
-      themeIcon.innerHTML = ICONS.dark;
-      themeToggle.setAttribute('aria-pressed', 'false');
-    }
-
-    // Initialize: default to dark unless user previously selected light
-    (function initTheme() {
-      const stored = localStorage.getItem('theme');
-      if (stored === 'light') {
-        applyLight();
-      } else {
-        // default: dark
-        applyDark();
-      }
-    })();
-
+    // Keep dark theme only. Show a static dark 'planet' icon and make the button non-toggle.
+    const DARK_ICON = '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>';
+    themeIcon.innerHTML = DARK_ICON;
+    themeToggle.setAttribute('aria-pressed', 'false');
+    // Make the toggle do a small visual pulse but not change theme
     themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      if (current === 'light') {
-        applyDark();
-      } else {
-        applyLight();
-      }
+      themeToggle.classList.add('theme-animate');
+      setTimeout(() => themeToggle.classList.remove('theme-animate'), 350);
     });
 
     const form = document.getElementById("contact-form");

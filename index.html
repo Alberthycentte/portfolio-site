@@ -36,6 +36,22 @@
       --transition-med: 0.25s ease-out;
     }
 
+    /* Light theme variables (applied when [data-theme="light"] is set on html) */
+    html[data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-alt: #f1f5f9;
+      --card-bg: #ffffff;
+      --card-border: rgba(15, 23, 42, 0.06);
+      --accent: #0b6cf6;
+      --accent-soft: rgba(11,108,246,0.12);
+      --accent-strong: #0753c9;
+      --accent-green: #16a34a;
+      --text: #0b1220;
+      --text-muted: #475569;
+      --shadow-soft: 0 12px 30px rgba(2,6,23,0.06);
+      --shadow-subtle: 0 6px 18px rgba(2,6,23,0.04);
+    }
+
     * ,
     *::before,
     *::after {
@@ -1030,6 +1046,17 @@
       .contact {
         grid-template-columns: minmax(0, 1fr);
       }
+      /* Make reveal elements visible on small screens where intersection observer
+         can be unreliable (improves mobile visibility) */
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      /* Reduce large negative image margins on small screens so project cards are visible */
+      .project-card__image-wrapper {
+        margin: 0 0 1rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1071,6 +1098,10 @@
 
       .nav__toggle {
         display: flex;
+      }
+      /* Make project grid one column on narrow screens */
+      .projects-grid {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
@@ -1698,8 +1729,36 @@
     revealEls.forEach((el) => observer.observe(el));
 
     const themeToggle = document.querySelector(".theme-toggle");
-    themeToggle.addEventListener("click", () => {
-      // Dark theme is default; you can extend this later if you want a light mode.
+    const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
+
+    // Initialize theme from localStorage (if present)
+    (function initTheme() {
+      const stored = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (stored === 'light' || (!stored && prefersLight)) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+        themeToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeToggle.setAttribute('aria-pressed', 'false');
+      }
+    })();
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      if (current === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+        themeIcon.textContent = '🌙';
+        themeToggle.setAttribute('aria-pressed', 'false');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeIcon.textContent = '☀️';
+        themeToggle.setAttribute('aria-pressed', 'true');
+      }
     });
 
     const form = document.getElementById("contact-form");

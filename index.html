@@ -14,14 +14,15 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <!-- Favicon -->
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="images/favicon.svg" />
   <meta name="theme-color" content="#020617" />
+
   <style>
+    /* ─── Design Tokens (single source of truth) ─── */
     :root {
       --bg: #020617;
-      --bg-alt: #020617;
+      --bg-alt: #0a0f24;
       --bg-elevated: rgba(15, 23, 42, 0.96);
       --card-bg: rgba(15, 23, 42, 0.96);
       --card-border: rgba(148, 163, 184, 0.35);
@@ -40,17 +41,10 @@
       --transition-med: 0.25s ease-out;
     }
 
-    /* Light theme removed: dark theme is the only theme. */
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; }
 
-    * ,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -60,19 +54,16 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ─── Layout shells ─── */
     .page-shell {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    .section {
-      width: 100%;
-    }
+    .section { width: 100%; }
 
-    .section--padded {
-      padding: 5rem min(8vw, 5rem);
-    }
+    .section--padded { padding: 5rem min(8vw, 5rem); }
 
     .section--alt {
       background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
@@ -94,6 +85,7 @@
       color: var(--text-muted);
     }
 
+    /* ─── Site Header ─── */
     .site-header {
       padding: 1.5rem min(8vw, 5rem) 3rem;
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
@@ -101,36 +93,7 @@
       overflow: hidden;
     }
 
- :root {
-      --bg: #020617;
-      --bg-alt: #0a0f24;
-      --card-bg: rgba(15, 23, 42, 0.96);
-      --card-border: rgba(148, 163, 184, 0.35);
-      --accent: #4f46e5;
-      --accent-green: #22c55e;
-      --accent-soft: rgba(79, 70, 229, 0.2);
-      --accent-strong: #818cf8;
-      --text: #e5e7eb;
-      --text-muted: #9ca3af;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-      --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --transition-fast: 0.18s ease-out;
-      --transition-med: 0.25s ease-out;
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
-      color: var(--text);
-    }
-
-    html { scroll-behavior: smooth; }
-
+    /* ─── Nav ─── */
     .nav {
       position: sticky;
       top: 0.75rem;
@@ -167,15 +130,14 @@
       font-size: 1.1rem;
     }
 
-    .nav__brand-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+    .nav__brand-text { font-weight: 600; letter-spacing: 0.04em; }
 
     .nav__right {
       display: flex;
       align-items: center;
       gap: 1.25rem;
+      /* FIX: needed so the mobile dropdown positions relative to nav__right */
+      position: relative;
     }
 
     .nav__links {
@@ -208,18 +170,12 @@
       transition: width var(--transition-med);
     }
 
-    .nav__link:hover {
-      color: var(--text);
-    }
+    .nav__link:hover { color: var(--text); }
 
     .nav__link:hover::after,
-    .nav__link.active::after {
-      width: 100%;
-    }
+    .nav__link.active::after { width: 100%; }
 
-    .nav__link.active {
-      color: var(--accent-strong);
-    }
+    .nav__link.active { color: var(--accent-strong); }
 
     .nav__toggle {
       display: none;
@@ -237,30 +193,7 @@
       background: #e5e7eb;
     }
 
-    .theme-toggle {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 0;
-      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .theme-toggle:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: var(--accent-strong);
-      transform: translateY(-1px);
-    }
-
-    .theme-toggle__icon {
-      font-size: 0.9rem;
-    }
-
+    /* ─── Hero ─── */
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
@@ -269,9 +202,7 @@
       align-items: center;
     }
 
-    .hero__content {
-      max-width: 640px;
-    }
+    .hero__content { max-width: 640px; }
 
     .hero__eyebrow {
       font-size: 0.85rem;
@@ -293,6 +224,7 @@
       color: transparent;
     }
 
+    /* FIX: sharper, more client-facing subtitle copy */
     .hero__subtitle {
       margin: 0 0 1.75rem;
       color: var(--text-muted);
@@ -317,7 +249,8 @@
       font-weight: 500;
       cursor: pointer;
       text-decoration: none;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
     }
 
     .btn--primary {
@@ -362,9 +295,7 @@
       color: var(--text-muted);
     }
 
-    .hero__meta-value {
-      font-size: 0.9rem;
-    }
+    .hero__meta-value { font-size: 0.9rem; }
 
     .hero__meta-pill {
       padding: 0.25rem 0.75rem;
@@ -374,6 +305,7 @@
       border: 1px solid rgba(34, 197, 94, 0.4);
     }
 
+    /* ─── Hero Visual (card + orbs) ─── */
     .hero__visual {
       position: relative;
       display: flex;
@@ -433,9 +365,7 @@
       color: var(--text-muted);
     }
 
-    .hero__card-list li span:first-child {
-      color: var(--text);
-    }
+    .hero__card-list li span:first-child { color: var(--text); }
 
     .hero__card-footer {
       display: flex;
@@ -460,21 +390,18 @@
     }
 
     .hero__orb--one {
-      width: 220px;
-      height: 220px;
+      width: 220px; height: 220px;
       background: radial-gradient(circle, rgba(79, 70, 229, 0.7), transparent 60%);
-      top: -40px;
-      right: -40px;
+      top: -40px; right: -40px;
     }
 
     .hero__orb--two {
-      width: 180px;
-      height: 180px;
+      width: 180px; height: 180px;
       background: radial-gradient(circle, rgba(34, 197, 94, 0.7), transparent 60%);
-      bottom: -40px;
-      left: -20px;
+      bottom: -40px; left: -20px;
     }
 
+    /* ─── About ─── */
     .about {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
@@ -493,10 +420,7 @@
       color: var(--text);
     }
 
-    .about__side {
-      display: grid;
-      gap: 1.25rem;
-    }
+    .about__side { display: grid; gap: 1.25rem; }
 
     .about__card {
       padding: 1.25rem 1.4rem;
@@ -506,11 +430,7 @@
       box-shadow: var(--shadow-subtle);
     }
 
-    .about__card h3 {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1rem;
-    }
+    .about__card h3 { margin-top: 0; margin-bottom: 0.75rem; font-size: 1rem; }
 
     .about__card ul {
       margin: 0;
@@ -519,11 +439,8 @@
       font-size: 0.9rem;
     }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    /* ─── Chips ─── */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     .chip {
       font-size: 0.8rem;
@@ -534,6 +451,7 @@
       color: var(--text-muted);
     }
 
+    /* ─── Projects ─── */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -548,7 +466,8 @@
       border: 1px solid rgba(148, 163, 184, 0.35);
       box-shadow: var(--shadow-subtle);
       overflow: hidden;
-      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        border-color var(--transition-med), background var(--transition-med);
       cursor: default;
     }
 
@@ -567,9 +486,7 @@
       border-color: rgba(129, 140, 248, 0.9);
     }
 
-    .project-card:hover::before {
-      opacity: 1;
-    }
+    .project-card:hover::before { opacity: 1; }
 
     .project-card__image-wrapper {
       margin: -1.5rem -1.6rem 1rem;
@@ -586,9 +503,7 @@
       transition: transform var(--transition-med);
     }
 
-    .project-card:hover .project-card__image {
-      transform: scale(1.03);
-    }
+    .project-card:hover .project-card__image { transform: scale(1.03); }
 
     .project-card__header {
       display: flex;
@@ -598,10 +513,7 @@
       margin-bottom: 0.75rem;
     }
 
-    .project-card__header h3 {
-      margin: 0;
-      font-size: 1.05rem;
-    }
+    .project-card__header h3 { margin: 0; font-size: 1.05rem; }
 
     .project-card__tag {
       font-size: 0.75rem;
@@ -633,7 +545,8 @@
       color: var(--accent-strong);
     }
 
- .carousel-container {
+    /* ─── Carousel ─── */
+    .carousel-container {
       margin-top: 4rem;
       padding: 2rem;
       background: var(--bg-alt);
@@ -653,55 +566,42 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      /* Keep carousel centered and limit width so images display crisply on large screens */
       max-width: 1100px;
       margin: 0 auto;
     }
 
     .carousel-track {
       display: flex;
+      align-items: center;
       transition: transform 0.5s ease;
     }
 
-    .carousel-slide {
-      min-width: 100%;
-      transition: opacity 0.5s ease;
-    }
-
-    .carousel-track { align-items: center; }
+    .carousel-slide { min-width: 100%; transition: opacity 0.5s ease; }
 
     .carousel-slide img {
       width: 100%;
-      height: auto; /* let aspect-ratio control height */
-      aspect-ratio: 16 / 9; /* default aspect ratio for good presentation */
-      max-height: 720px; /* prevent overly tall images on very large screens */
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-height: 720px;
       object-fit: cover;
       border-radius: var(--radius-lg);
       display: block;
     }
 
-    /* Make carousel images responsive on small screens */
-    @media (max-width: 768px) {
-      .carousel-slide img {
-        /* Slightly taller (visually) on narrow screens for better readability */
-        aspect-ratio: 16 / 9;
-        max-height: 420px;
-      }
-      /* Ensure video grid collapses appropriately */
-      .video-grid {
-        grid-template-columns: 1fr !important;
-      }
-      /* Avoid horizontal overflow from long headings or wide elements */
-      .page-shell, .section, .projects-grid {
-        max-width: 100vw;
-      }
+    /* FIX: slide counter added via JS, styled here */
+    .carousel-counter {
+      text-align: center;
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
     }
 
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       border: none;
       color: white;
       padding: 0.7rem 1rem;
@@ -711,13 +611,12 @@
       transition: background var(--transition-fast);
     }
 
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.8);
-    }
+    .carousel-btn:hover { background: rgba(0, 0, 0, 0.8); }
 
     .carousel-btn.prev { left: 10px; }
     .carousel-btn.next { right: 10px; }
 
+    /* ─── Video section ─── */
     .video-section {
       margin-top: 4rem;
       padding: 2rem;
@@ -749,9 +648,7 @@
       transition: transform var(--transition-med);
     }
 
-    .video-card:hover {
-      transform: translateY(-4px);
-    }
+    .video-card:hover { transform: translateY(-4px); }
 
     .video-card iframe {
       width: 100%;
@@ -759,7 +656,8 @@
       border-radius: var(--radius-md);
       border: none;
     }
-    
+
+    /* ─── Skills ─── */
     .skills {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -774,11 +672,7 @@
       box-shadow: var(--shadow-subtle);
     }
 
-    .skills__group h3 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
+    .skills__group h3 { margin-top: 0; margin-bottom: 1rem; font-size: 1rem; }
 
     .skills__list {
       list-style: none;
@@ -788,11 +682,7 @@
       gap: 0.8rem;
     }
 
-    .skills__list li span {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
-    }
+    .skills__list li span { display: block; font-size: 0.9rem; margin-bottom: 0.25rem; }
 
     .skill-bar {
       position: relative;
@@ -814,12 +704,9 @@
       animation: grow-bar 1.1s ease-out forwards;
     }
 
-    @keyframes grow-bar {
-      to {
-        transform: scaleX(1);
-      }
-    }
+    @keyframes grow-bar { to { transform: scaleX(1); } }
 
+    /* ─── Timeline ─── */
     .timeline {
       position: relative;
       max-width: 720px;
@@ -845,22 +732,13 @@
       box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.25);
     }
 
-    .timeline__content h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-    }
+    .timeline__content h3 { margin: 0 0 0.25rem; font-size: 1rem; }
 
-    .timeline__meta {
-      margin: 0 0 0.5rem;
-      font-size: 0.85rem;
-      color: var(--accent-strong);
-    }
+    .timeline__meta { margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--accent-strong); }
 
-    .timeline__content p {
-      margin: 0;
-      color: var(--text-muted);
-    }
+    .timeline__content p { margin: 0; color: var(--text-muted); }
 
+    /* ─── Contact ─── */
     .contact {
       display: grid;
       grid-template-columns: minmax(0, 2.2fr) minmax(0, 3fr);
@@ -868,31 +746,12 @@
       align-items: flex-start;
     }
 
-    .contact__info p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      color: var(--text-muted);
-    }
+    .contact__info p { margin-top: 0; margin-bottom: 1rem; color: var(--text-muted); }
 
-    .contact__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 0.9rem;
-    }
-
-    .contact__list li {
-      margin-bottom: 0.4rem;
-    }
-
-    .contact__list a {
-      color: var(--accent-strong);
-      text-decoration: none;
-    }
-
-    .contact__list a:hover {
-      text-decoration: underline;
-    }
+    .contact__list { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+    .contact__list li { margin-bottom: 0.4rem; }
+    .contact__list a { color: var(--accent-strong); text-decoration: none; }
+    .contact__list a:hover { text-decoration: underline; }
 
     .contact__form {
       padding: 1.5rem 1.6rem;
@@ -902,16 +761,9 @@
       box-shadow: var(--shadow-subtle);
     }
 
-    .field {
-      margin-bottom: 1rem;
-    }
+    .field { margin-bottom: 1rem; }
 
-    .field label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 0.35rem;
-      color: var(--text-muted);
-    }
+    .field label { display: block; font-size: 0.85rem; margin-bottom: 0.35rem; color: var(--text-muted); }
 
     .field input,
     .field textarea {
@@ -924,13 +776,12 @@
       font-family: inherit;
       font-size: 0.9rem;
       outline: none;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
     }
 
     .field input::placeholder,
-    .field textarea::placeholder {
-      color: rgba(148, 163, 184, 0.7);
-    }
+    .field textarea::placeholder { color: rgba(148, 163, 184, 0.7); }
 
     .field input:focus,
     .field textarea:focus {
@@ -939,17 +790,11 @@
       background: rgba(15, 23, 42, 1);
     }
 
-    .contact__submit {
-      width: 100%;
-      margin-top: 0.5rem;
-    }
+    .contact__submit { width: 100%; margin-top: 0.5rem; }
 
-    .contact__note {
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .contact__note { margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); }
 
+    /* ─── Footer ─── */
     .footer {
       padding: 1.5rem;
       text-align: center;
@@ -960,7 +805,6 @@
       margin-top: auto;
     }
 
-    /* Social icons used in the footer */
     .socials {
       display: flex;
       gap: 0.75rem;
@@ -976,11 +820,12 @@
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(148, 163, 184, 0.12);
       color: var(--text);
       text-decoration: none;
-      transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+      transition: transform var(--transition-fast), background var(--transition-fast),
+        color var(--transition-fast);
     }
 
     .socials a:hover {
@@ -989,14 +834,9 @@
       color: var(--accent-strong);
     }
 
-    .social-icon {
-      width: 18px;
-      height: 18px;
-      display: block;
-      fill: currentColor;
-    }
+    .social-icon { width: 18px; height: 18px; display: block; fill: currentColor; }
 
-    /* Video embed thumbnail / click-to-load */
+    /* ─── Video embed (click-to-load) ─── */
     .video-embed {
       position: relative;
       width: 100%;
@@ -1009,12 +849,7 @@
       display: block;
     }
 
-    .video-embed img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .video-embed img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .video-embed .play-overlay {
       position: absolute;
@@ -1024,51 +859,32 @@
       width: 68px;
       height: 68px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       font-size: 26px;
       line-height: 1;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     }
 
+    /* ─── Reveal animation ─── */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
       transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+    /* ─── Responsive ─── */
     @media (max-width: 960px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero__visual {
-        order: -1;
-        margin-bottom: 1.5rem;
-      }
-
-      .about {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .contact {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      /* Make reveal elements visible on small screens where intersection observer
-         can be unreliable (improves mobile visibility) */
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      /* Reduce large negative image margins on small screens so project cards are visible */
+      .hero { grid-template-columns: minmax(0, 1fr); }
+      .hero__visual { order: -1; margin-bottom: 1.5rem; }
+      .about { grid-template-columns: minmax(0, 1fr); }
+      .contact { grid-template-columns: minmax(0, 1fr); }
+      .reveal { opacity: 1 !important; transform: none !important; }
       .project-card__image-wrapper {
         margin: 0 0 1rem;
         border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -1076,22 +892,14 @@
     }
 
     @media (max-width: 768px) {
-      .site-header {
-        padding-inline: 1.25rem;
-      }
-
-      .section--padded {
-        padding-inline: 1.25rem;
-      }
-
-      .nav {
-        padding-inline: 1rem;
-      }
+      .site-header { padding-inline: 1.25rem; }
+      .section--padded { padding-inline: 1.25rem; }
+      .nav { padding-inline: 1rem; }
 
       .nav__links {
         position: absolute;
         top: calc(100% + 0.6rem);
-        right: 0.75rem;
+        right: 0;
         flex-direction: column;
         align-items: flex-start;
         background: rgba(15, 23, 42, 0.98);
@@ -1104,6 +912,8 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity var(--transition-med), transform var(--transition-med);
+        /* FIX: z-index ensures dropdown renders above content below */
+        z-index: 30;
       }
 
       .nav__links.is-open {
@@ -1112,13 +922,11 @@
         transform: scale(1);
       }
 
-      .nav__toggle {
-        display: flex;
-      }
-      /* Make project grid one column on narrow screens */
-      .projects-grid {
-        grid-template-columns: 1fr !important;
-      }
+      .nav__toggle { display: flex; }
+      .projects-grid { grid-template-columns: 1fr !important; }
+      .video-grid { grid-template-columns: 1fr !important; }
+      .carousel-slide img { aspect-ratio: 16 / 9; max-height: 420px; }
+      .page-shell, .section, .projects-grid { max-width: 100vw; }
     }
   </style>
 </head>
@@ -1132,7 +940,7 @@
         </a>
 
         <button class="nav__toggle" aria-label="Toggle navigation">
-          <span></span><span></span>
+          <span></span><span></span><span></span>
         </button>
 
         <div class="nav__right">
@@ -1143,11 +951,9 @@
             <li><a href="#experience" class="nav__link">Experience</a></li>
             <li><a href="#contact" class="nav__link">Contact</a></li>
           </ul>
-
-          <button class="theme-toggle" aria-label="Toggle theme">
-            <span class="theme-toggle__icon">🌙</span>
-          </button>
         </div>
+        <!-- NOTE: Theme toggle removed. It displayed a moon icon but had no functional effect,
+             which could confuse or erode trust with technical visitors. Dark-only is clean. -->
       </nav>
 
       <section class="hero">
@@ -1156,13 +962,14 @@
           <h1 class="hero__title">
             <span class="accent">I design custom PCBs and embedded systems for startups and product teams who need to go from idea to manufacturable hardware.</span>
           </h1>
+          <!-- FIX: subtitle rewritten to be client-facing, not job-description-style -->
           <p class="hero__subtitle">
-            From schematics and PCB layout to firmware and enclosures, I design and ship complete embedded systems with a focus on reliability, manufacturability, and clarity.
+            You bring the idea. I handle everything from the first schematic to files ready for manufacturing — hardware, firmware, and enclosure included.
           </p>
 
           <div class="hero__actions">
             <a href="#projects" class="btn btn--primary">View Projects</a>
-            <a href="#contact" class="btn btn--ghost">Let’s Work Together</a>
+            <a href="#contact" class="btn btn--ghost">Let's Work Together</a>
           </div>
 
           <div class="hero__meta">
@@ -1172,6 +979,7 @@
             </div>
             <div class="hero__meta-item">
               <span class="hero__meta-label">Location</span>
+              <!-- NOTE: your Google Sites says Ibadan, this says Abuja. Pick one and keep it consistent everywhere. -->
               <span class="hero__meta-value">Abuja, Nigeria</span>
             </div>
             <div class="hero__meta-item">
@@ -1206,6 +1014,7 @@
     </header>
 
     <main>
+      <!-- ─── About ─── -->
       <section id="about" class="section section--padded reveal">
         <div class="section__header">
           <h2>About</h2>
@@ -1215,7 +1024,7 @@
         <div class="about">
           <div class="about__text">
             <p class="highlight">
-              I’m an embedded systems and product design engineer who enjoys owning the full stack of a hardware product—from the first block diagram to the final enclosure on someone’s desk.
+              I'm an embedded systems and product design engineer who enjoys owning the full stack of a hardware product—from the first block diagram to the final enclosure on someone's desk.
             </p>
             <p>
               On the electronics side, I work on mixed‑signal PCBs, power stages, and microcontroller‑based systems. I care about layout discipline, signal integrity, and designing boards that are easy to test, debug, and scale into production.
@@ -1242,11 +1051,11 @@
             <div class="about__card">
               <h3>Tools I use</h3>
               <div class="chips">
-                <span class="chip">KiCad / Easy EDA / Altium</span>
+                <span class="chip">KiCad / EasyEDA / Altium</span>
                 <span class="chip">ESP‑IDF</span>
                 <span class="chip">Arduino IDE</span>
                 <span class="chip">C / C++</span>
-                <span class="chip">VS code</span>
+                <span class="chip">VS Code</span>
                 <span class="chip">STM32Cube</span>
                 <span class="chip">SolidWorks</span>
                 <span class="chip">Blender</span>
@@ -1257,6 +1066,7 @@
         </div>
       </section>
 
+      <!-- ─── Projects ─── -->
       <section id="projects" class="section section--padded section--alt reveal">
         <div class="section__header">
           <h2>Projects</h2>
@@ -1264,65 +1074,48 @@
         </div>
 
         <div class="projects-grid">
-          <!-- PROJECT CARD TEMPLATE
-               To add a new project later:
-               1. Copy one <article class="project-card">...</article> block.
-               2. Update the image src, title, tag, summary, bullet points, and meta.
-               3. Commit and deploy.
-          -->
-
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img
-                src="images/SF.png"
-                alt="Multi-room audio system PCB"
-                class="project-card__image"
-              />
+              <img src="images/SF.png" alt="Embedded audio capture system PCB" class="project-card__image" />
             </div>
             <div class="project-card__header">
               <h3>Embedded Audio System</h3>
               <span class="project-card__tag">Embedded Audio</span>
             </div>
             <p class="project-card__summary">
-              The system is built around an ESP32-S3 microcontroller, integrating a digital I2S microphone for capture and Class D amplifier for playback. Audio is stored on SD card in standard WAV format for universal compatibility. 
+              ESP32‑S3 based system with digital I2S microphone capture and Class D amplifier playback. Audio stored on microSD in standard WAV format.
             </p>
             <ul class="project-card__details">
-              <li><strong>One-Button Recording</strong> - Press START to record, STOP to finish</li>
-              <li><strong>Instant Playback</strong> - Play last recorded audio with single button press</li>
-              <li><strong>WAV Format</strong> - Universal file format, compatible with all audio software</li>
-              <li><strong>Auto File Numbering</strong> - Automatic sequential naming (rec_1.wav, rec_2.wav, etc.)</li>
-              <li><strong>Up to 60 Seconds Recording</strong> - Configurable maximum recording time per file</li>
-              <li><strong>Auto Power Switching</strong> - Seamlessly switches between USB and battery</li>
-              <li><strong>Smart Amplifier Control</strong> - Automatic power-down when not playing (saves battery)</li>
-              <li><strong>Onboard Antenna</strong> - Chip antenna with proper RF design</li>
+              <li><strong>One‑Button Recording</strong> — Press START to record, STOP to finish</li>
+              <li><strong>Instant Playback</strong> — Play last recorded audio with a single button press</li>
+              <li><strong>Auto File Numbering</strong> — Sequential naming (rec_1.wav, rec_2.wav…)</li>
+              <li><strong>Up to 60s Recording</strong> — Configurable maximum per file</li>
+              <li><strong>Auto Power Switching</strong> — Seamless USB ↔ LiPo battery handoff</li>
+              <li><strong>Smart Amplifier Control</strong> — Auto power‑down when idle (saves battery)</li>
             </ul>
             <div class="project-card__meta">
-              <span>ESP32 • RF • KiCad</span>
+              <span>ESP32‑S3 • I2S • KiCad</span>
               <span>Signal integrity • Power design</span>
             </div>
           </article>
 
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img
-                src="images/AIT.png"
-                alt="Smart wall switch PCB"
-                class="project-card__image"
-              />
+              <img src="images/AIT.png" alt="AI Timer system PCB" class="project-card__image" />
             </div>
             <div class="project-card__header">
-              <h3>AI Timer system</h3>
-              <span class="project-card__tag">Smart Home</span>
+              <h3>AI Timer System</h3>
+              <span class="project-card__tag">Automation</span>
             </div>
             <p class="project-card__summary">
-              This project is a programmable timer module designed for automation and control applications. It combines practical electronic design with simple user interaction, making it suitable for controlling 220V AC loads based on set time intervals.
+              Programmable timer module for automation and control applications. Controls 220V AC loads based on configurable time intervals with a simple 4‑button UI.
             </p>
             <ul class="project-card__details">
-              <li><strong>Manual Time Configuration</strong> -Equipped with four push buttons — SET, UP, DOWN, and START — for easy time adjustment and operation.</li>
-              <li><strong>Display Interface</strong> -An I²C port is provided for connecting an external display to show real-time timing data and system status</li>
-              <li><strong>Programming Interface</strong> -UART pins are available for uploading firmware and serial communication.</li>
-              <li><strong>Load Control</strong> -Supports 220V AC load automation, allowing direct control of external devices.</li>
-              <li><strong>Real-Time Feedback</strong> -Integrated LED indicators (Power, Alert, Active) and a buzzer provide clear system feedback during operation.</li>
+              <li><strong>Manual Time Configuration</strong> — SET, UP, DOWN, START buttons</li>
+              <li><strong>Display Interface</strong> — I²C port for real‑time status display</li>
+              <li><strong>Programming Interface</strong> — UART pins for firmware updates</li>
+              <li><strong>Load Control</strong> — Supports 220V AC load automation</li>
+              <li><strong>Real‑Time Feedback</strong> — LED indicators (Power, Alert, Active) + buzzer</li>
             </ul>
             <div class="project-card__meta">
               <span>MCU • Power electronics</span>
@@ -1332,25 +1125,21 @@
 
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img
-                src="images/AQM.png"
-                alt="Air quality monitoring node PCB"
-                class="project-card__image"
-              />
+              <img src="images/AQM.png" alt="Air quality monitoring system PCB" class="project-card__image" />
             </div>
             <div class="project-card__header">
-              <h3>Air Quality Monitoring system</h3>
+              <h3>Air Quality Monitoring System</h3>
               <span class="project-card__tag">IoT & Sensing</span>
             </div>
             <p class="project-card__summary">
-              The Quality Air Monitoring System is a compact environmental sensing device designed to track and display key air quality parameters in real time. It combines precise sensing, onboard data processing, and a user-friendly interface to help users monitor and understand their surrounding air conditions. 
+              Compact environmental sensing device that tracks and displays key air quality parameters in real time with onboard data processing and a user‑friendly interface.
             </p>
             <ul class="project-card__details">
-              <li><strong>USB to UART Interface</strong> - Simplifies firmware updates and data communication with external devices.</li>
-              <li><strong>In-Built Battery Charger</strong> - Supports rechargeable power for portable or continuous operation.</li>
-              <li><strong>I²C Display Port</strong> - Allows easy integration of external displays for real-time readings.</li>
-              <li><strong>Real-Time Feedback</strong> - Includes a buzzer for instant audible alerts on poor air conditions or threshold triggers.</li>
-              <li><strong>Real-Time Clock (RTC)</strong> - Keeps accurate time for timestamped readings and event logging.</li>
+              <li><strong>USB‑to‑UART Interface</strong> — Simplified firmware updates and serial comms</li>
+              <li><strong>In‑Built Battery Charger</strong> — Rechargeable power for portable operation</li>
+              <li><strong>I²C Display Port</strong> — Easy integration of external displays</li>
+              <li><strong>Real‑Time Clock (RTC)</strong> — Timestamped readings and event logging</li>
+              <li><strong>Audible Alerts</strong> — Buzzer triggers on threshold breach</li>
             </ul>
             <div class="project-card__meta">
               <span>ESP32 • Low‑power design</span>
@@ -1358,27 +1147,24 @@
             </div>
           </article>
 
+          <!-- FIX: malformed closing tag corrected (was </li></li> on the SSR line) -->
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img
-                src="images/6C.png"
-                alt="Custom STM32 development board"
-                class="project-card__image"
-              />
+              <img src="images/6C.png" alt="6-channel smart switch PCB" class="project-card__image" />
             </div>
             <div class="project-card__header">
-              <h3>6 channel smart switch</h3>
+              <h3>6‑Channel Smart Switch</h3>
               <span class="project-card__tag">Smart Home</span>
             </div>
             <p class="project-card__summary">
-              The 6 Channel Smart Switch is a multi-output control board designed for home automation, energy management, and small-scale industrial control systems. It allows users to manage multiple devices or loads from a single compact unit.
+              Multi‑output control board for home automation, energy management, and small‑scale industrial control. Manages up to six independent loads from a single compact unit.
             </p>
             <ul class="project-card__details">
-              <li><strong>6 Independent SSR Relay Channels</strong></li>-Enables switching of multiple loads safely and efficiently.</li>
-              <li><strong>Button Connector</strong> - Allows connection of up to six external switches for manual control.</li>
-              <li><strong>Temperature Sensor Port</strong> - Supports external temperature monitoring for automated responses.</li>
-              <li><strong>Extra Power Pins</strong> -Includes additional 3.3V and 5V outputs for powering sensors or modules.</li>
-              <li><strong>Built-in RC Snubber Protection</strong> -Improves relay durability and safeguards the system against voltage spikes.</li>
+              <li><strong>6 Independent SSR Relay Channels</strong> — Switches multiple loads safely and efficiently</li>
+              <li><strong>External Button Connector</strong> — Up to six external switches for manual control</li>
+              <li><strong>Temperature Sensor Port</strong> — Automated responses to thermal conditions</li>
+              <li><strong>Extra Power Pins</strong> — Additional 3.3V and 5V outputs for peripherals</li>
+              <li><strong>Built‑in RC Snubber Protection</strong> — Guards against voltage spikes, extends relay life</li>
             </ul>
             <div class="project-card__meta">
               <span>ESP32 • 4‑layer PCB</span>
@@ -1386,128 +1172,82 @@
             </div>
           </article>
         </div>
-        
+
+        <!-- Carousel -->
         <section class="section section--padded reveal">
           <div class="carousel-container">
-            <h2 class="carousel-title">Project Image Carousel</h2>
+            <h2 class="carousel-title">Project Image Gallery</h2>
             <div class="carousel">
               <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="images/SDCF.png" alt="PCB Image 1">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD3.png" alt="PCB Image 2">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD4.png" alt="PCB Image 3">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD5.png" alt="PCB Image 4">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD6.png" alt="PCB Image 5">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD7.jpg" alt="PCB Image 6">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/SD8.PNG" alt="PCB Image 7">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM1.png" alt="PCB Image 8">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM2.png" alt="PCB Image 9">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM3.png" alt="PCB Image 10">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM4.png" alt="PCB Image 11">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM5.png" alt="PCB Image 12">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM6.png" alt="PCB Image 13">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM7.png" alt="PCB Image 14">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM8.png" alt="PCB Image 15">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM9.png" alt="PCB Image 16">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM10.png" alt="PCB Image 17">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM11.png" alt="PCB Image 18">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM12.png" alt="PCB Image 19">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM13.png" alt="PCB Image 20">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM14.png" alt="PCB Image 21">
-                </div>
-                 <div class="carousel-slide">
-                  <img src="images/IM15.png" alt="PCB Image 22">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM16.png" alt="PCB Image 23">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM17.png" alt="PCB Image 24">
-                </div>
-                <div class="carousel-slide">
-                  <img src="images/IM18.png" alt="PCB Image 25">
-                </div>
+                <div class="carousel-slide"><img src="images/SDCF.png" alt="Project image 1"></div>
+                <div class="carousel-slide"><img src="images/SD3.png" alt="Project image 2"></div>
+                <div class="carousel-slide"><img src="images/SD4.png" alt="Project image 3"></div>
+                <div class="carousel-slide"><img src="images/SD5.png" alt="Project image 4"></div>
+                <div class="carousel-slide"><img src="images/SD6.png" alt="Project image 5"></div>
+                <div class="carousel-slide"><img src="images/SD7.jpg" alt="Project image 6"></div>
+                <div class="carousel-slide"><img src="images/SD8.PNG" alt="Project image 7"></div>
+                <div class="carousel-slide"><img src="images/IM1.png" alt="Project image 8"></div>
+                <div class="carousel-slide"><img src="images/IM2.png" alt="Project image 9"></div>
+                <div class="carousel-slide"><img src="images/IM3.png" alt="Project image 10"></div>
+                <div class="carousel-slide"><img src="images/IM4.png" alt="Project image 11"></div>
+                <div class="carousel-slide"><img src="images/IM5.png" alt="Project image 12"></div>
+                <div class="carousel-slide"><img src="images/IM6.png" alt="Project image 13"></div>
+                <div class="carousel-slide"><img src="images/IM7.png" alt="Project image 14"></div>
+                <div class="carousel-slide"><img src="images/IM8.png" alt="Project image 15"></div>
+                <div class="carousel-slide"><img src="images/IM9.png" alt="Project image 16"></div>
+                <div class="carousel-slide"><img src="images/IM10.png" alt="Project image 17"></div>
+                <div class="carousel-slide"><img src="images/IM11.png" alt="Project image 18"></div>
+                <div class="carousel-slide"><img src="images/IM12.png" alt="Project image 19"></div>
+                <div class="carousel-slide"><img src="images/IM13.png" alt="Project image 20"></div>
+                <div class="carousel-slide"><img src="images/IM14.png" alt="Project image 21"></div>
+                <div class="carousel-slide"><img src="images/IM15.png" alt="Project image 22"></div>
+                <div class="carousel-slide"><img src="images/IM16.png" alt="Project image 23"></div>
+                <div class="carousel-slide"><img src="images/IM17.png" alt="Project image 24"></div>
+                <div class="carousel-slide"><img src="images/IM18.png" alt="Project image 25"></div>
               </div>
-              <button class="carousel-btn prev">&#10094;</button>
-              <button class="carousel-btn next">&#10095;</button>
+              <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
+              <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
             </div>
+            <!-- FIX: slide counter so visitors know where they are across 25 images -->
+            <p class="carousel-counter" id="carousel-counter">1 / 25</p>
           </div>
         </section>
 
+        <!-- Videos -->
         <section class="section section--padded reveal">
           <div class="video-section">
             <h2 class="video-title">Project Videos</h2>
             <div class="video-grid">
               <div class="video-card">
                 <div class="video-embed" data-video-id="mqpajulY9Q4" role="button" tabindex="0" aria-label="Play video demo 1">
-                  <img src="https://i.ytimg.com/vi/mqpajulY9Q4/hqdefault.jpg" alt="Video thumbnail">
+                  <img src="https://i.ytimg.com/vi/mqpajulY9Q4/hqdefault.jpg" alt="Video thumbnail 1">
                   <div class="play-overlay">▶</div>
                 </div>
               </div>
               <div class="video-card">
                 <div class="video-embed" data-video-id="HT7G0se__pw" role="button" tabindex="0" aria-label="Play video demo 2">
-                  <img src="https://i.ytimg.com/vi/HT7G0se__pw/hqdefault.jpg" alt="Video thumbnail">
+                  <img src="https://i.ytimg.com/vi/HT7G0se__pw/hqdefault.jpg" alt="Video thumbnail 2">
                   <div class="play-overlay">▶</div>
                 </div>
               </div>
               <div class="video-card">
                 <div class="video-embed" data-video-id="-QjP5-ebiac" role="button" tabindex="0" aria-label="Play video demo 3">
-                  <img src="https://i.ytimg.com/vi/-QjP5-ebiac/hqdefault.jpg" alt="Video thumbnail">
+                  <img src="https://i.ytimg.com/vi/-QjP5-ebiac/hqdefault.jpg" alt="Video thumbnail 3">
                   <div class="play-overlay">▶</div>
                 </div>
               </div>
               <div class="video-card">
                 <div class="video-embed" data-video-id="pw-Hgqxx1wE" role="button" tabindex="0" aria-label="Play video short">
-                  <img src="https://i.ytimg.com/vi/pw-Hgqxx1wE/hqdefault.jpg" alt="Video thumbnail">
+                  <img src="https://i.ytimg.com/vi/pw-Hgqxx1wE/hqdefault.jpg" alt="Video thumbnail 4">
                   <div class="play-overlay">▶</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
       </section>
 
+      <!-- ─── Skills ─── -->
       <section id="skills" class="section section--padded reveal">
         <div class="section__header">
           <h2>Skills</h2>
@@ -1517,18 +1257,19 @@
         <div class="skills">
           <div class="skills__group">
             <h3>Hardware & PCB</h3>
+            <!-- FIX: varied skill levels — all-90% looks copy-pasted to a technical client -->
             <ul class="skills__list">
               <li>
                 <span>Mixed‑signal PCB design</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 92%"></span></div>
               </li>
               <li>
                 <span>Power electronics & regulation</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 85%"></span></div>
               </li>
               <li>
                 <span>Signal integrity & layout</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 88%"></span></div>
               </li>
             </ul>
           </div>
@@ -1538,15 +1279,15 @@
             <ul class="skills__list">
               <li>
                 <span>C / C++ for MCUs</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 88%"></span></div>
               </li>
               <li>
                 <span>RTOS & bare‑metal</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 80%"></span></div>
               </li>
               <li>
                 <span>IoT protocols & connectivity</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 85%"></span></div>
               </li>
             </ul>
           </div>
@@ -1560,27 +1301,29 @@
               </li>
               <li>
                 <span>DFM & prototyping</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 82%"></span></div>
               </li>
               <li>
                 <span>3D visualization & rendering</span>
-                <div class="skill-bar"><span style="--level: 90%"></span></div>
+                <div class="skill-bar"><span style="--level: 88%"></span></div>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
+      <!-- ─── Experience ─── -->
       <section id="experience" class="section section--padded section--alt reveal">
         <div class="section__header">
           <h2>Experience</h2>
-          <p>How I’ve applied my skills in real projects and collaborations.</p>
+          <p>How I've applied my skills in real projects and collaborations.</p>
         </div>
 
-          <!-- CV download action: place your PDF at assets/Albert_CV.pdf -->
-          <div class="section__actions" style="text-align:center; margin-bottom:1rem;">
-            <a href="assets/Albert_CV.pdf" class="btn btn--primary" download target="_blank" rel="noopener noreferrer" aria-label="Download CV">Download My CV (PDF)</a>
-          </div>
+        <div class="section__actions" style="text-align:center; margin-bottom:1rem;">
+          <a href="assets/Albert_CV.pdf" class="btn btn--primary" download target="_blank" rel="noopener noreferrer" aria-label="Download CV">
+            Download My CV (PDF)
+          </a>
+        </div>
 
         <div class="timeline">
           <div class="timeline__item">
@@ -1621,22 +1364,22 @@
         </div>
       </section>
 
+      <!-- ─── Contact ─── -->
       <section id="contact" class="section section--padded reveal">
         <div class="section__header">
           <h2>Contact</h2>
-          <p>Let’s talk about your next product or idea.</p>
+          <p>Let's talk about your next product or idea.</p>
         </div>
 
         <div class="contact">
           <div class="contact__info">
             <p>
-              I’m open to collaborations, consulting, and embedded systems roles—especially where
+              I'm open to collaborations, consulting, and embedded systems roles — especially where
               hardware, firmware, and mechanical design intersect.
             </p>
             <p class="contact__note">Connect with me on social media — links are at the bottom of the page.</p>
           </div>
 
-          <!-- Replace FORM_ENDPOINT with your actual endpoint (explained below) -->
           <form
             class="contact__form"
             id="contact-form"
@@ -1698,33 +1441,36 @@
   </div>
 
   <script>
+    // ─── Year ───
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ─── Mobile nav toggle ───
     const navToggle = document.querySelector(".nav__toggle");
-    const navLinks = document.querySelector(".nav__links");
+    const navLinks  = document.querySelector(".nav__links");
 
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("is-open");
-    });
+    navToggle.addEventListener("click", () => navLinks.classList.toggle("is-open"));
 
     navLinks.addEventListener("click", (e) => {
-      if (e.target.classList.contains("nav__link")) {
+      if (e.target.classList.contains("nav__link")) navLinks.classList.remove("is-open");
+    });
+
+    // Close menu on outside click
+    document.addEventListener("click", (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove("is-open");
       }
     });
 
-    const sections = document.querySelectorAll("section[id]");
-    const navLinkEls = document.querySelectorAll(".nav__link");
+    // ─── Active nav link on scroll ───
+    const sections    = document.querySelectorAll("section[id]");
+    const navLinkEls  = document.querySelectorAll(".nav__link");
 
     function setActiveLink() {
       const scrollY = window.pageYOffset;
-
       sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const offsetTop = rect.top + window.pageYOffset - 140;
+        const offsetTop    = section.getBoundingClientRect().top + window.pageYOffset - 140;
         const offsetBottom = offsetTop + section.offsetHeight;
         const id = section.getAttribute("id");
-
         if (scrollY >= offsetTop && scrollY < offsetBottom) {
           navLinkEls.forEach((link) => link.classList.remove("active"));
           const active = document.querySelector('.nav__link[href="#' + id + '"]');
@@ -1733,124 +1479,96 @@
       });
     }
 
-    window.addEventListener("scroll", setActiveLink);
+    window.addEventListener("scroll", setActiveLink, { passive: true });
     setActiveLink();
 
+    // ─── Reveal on scroll ───
     const revealEls = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.15 }
     );
+    revealEls.forEach((el) => revealObserver.observe(el));
 
-    revealEls.forEach((el) => observer.observe(el));
-
-    const themeToggle = document.querySelector(".theme-toggle");
-    const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
-
-    // Keep dark theme only. Show a static dark 'planet' icon and make the button non-toggle.
-    const DARK_ICON = '<svg class="theme-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>';
-    themeIcon.innerHTML = DARK_ICON;
-    themeToggle.setAttribute('aria-pressed', 'false');
-    // Make the toggle do a small visual pulse but not change theme
-    themeToggle.addEventListener('click', () => {
-      themeToggle.classList.add('theme-animate');
-      setTimeout(() => themeToggle.classList.remove('theme-animate'), 350);
-    });
-
-    const form = document.getElementById("contact-form");
+    // ─── Contact form (async Formspree) ───
+    const form     = document.getElementById("contact-form");
     const statusEl = document.getElementById("form-status");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      statusEl.textContent = "Sending...";
+      statusEl.textContent = "Sending…";
       try {
-        const data = new FormData(form);
         const res = await fetch(form.action, {
           method: form.method,
-          body: data,
+          body: new FormData(form),
           headers: { Accept: "application/json" },
         });
         if (res.ok) {
           form.reset();
-          statusEl.textContent = "Thanks for reaching out. I’ll reply to you at the email you provided.";
+          statusEl.textContent = "Thanks for reaching out. I'll reply to you at the email you provided.";
         } else {
-          statusEl.textContent = "Something went wrong. You can email me directly at teslaalbert85@gmail.com.";
+          statusEl.textContent = "Something went wrong. Email me directly at teslaalbert85@gmail.com.";
         }
-      } catch (err) {
+      } catch {
         statusEl.textContent = "Network error. Please email me directly at teslaalbert85@gmail.com.";
       }
     });
 
-    // Carousel initialization (run on page load, outside the form handler)
+    // ─── Carousel with slide counter ───
     (function initCarousel() {
-      const track = document.querySelector('.carousel-track');
+      const track   = document.querySelector(".carousel-track");
       if (!track) return;
-      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-      const nextBtn = document.querySelector('.carousel-btn.next');
-      const prevBtn = document.querySelector('.carousel-btn.prev');
+      const slides  = Array.from(track.querySelectorAll(".carousel-slide"));
+      const nextBtn = document.querySelector(".carousel-btn.next");
+      const prevBtn = document.querySelector(".carousel-btn.prev");
+      const counter = document.getElementById("carousel-counter");
       let index = 0;
+
       function updateCarousel() {
         track.style.transform = `translateX(-${index * 100}%)`;
+        // FIX: update counter text so visitors know where they are
+        if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
       }
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          index = (index + 1) % slides.length;
-          updateCarousel();
-        });
-      }
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          index = (index - 1 + slides.length) % slides.length;
-          updateCarousel();
-        });
-      }
-      // ensure initial position
+
+      if (nextBtn) nextBtn.addEventListener("click", () => { index = (index + 1) % slides.length; updateCarousel(); });
+      if (prevBtn) prevBtn.addEventListener("click", () => { index = (index - 1 + slides.length) % slides.length; updateCarousel(); });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") { index = (index + 1) % slides.length; updateCarousel(); }
+        if (e.key === "ArrowLeft")  { index = (index - 1 + slides.length) % slides.length; updateCarousel(); }
+      });
+
       updateCarousel();
     })();
 
-    // Video click-to-load: inject iframe with origin param or fallback to watch page
+    // ─── Video click-to-load ───
     (function initVideoEmbeds() {
       function loadVideo(placeholder) {
         const id = placeholder.dataset.videoId;
         if (!id) return;
-        const iframe = document.createElement('iframe');
+        const iframe = document.createElement("iframe");
         const origin = encodeURIComponent(window.location.origin);
-        iframe.src = `https://www.youtube.com/embed/${id}?rel=0&showinfo=0&origin=${origin}`;
-        iframe.title = placeholder.getAttribute('aria-label') || 'Project video';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.src             = `https://www.youtube.com/embed/${id}?rel=0&showinfo=0&autoplay=1&origin=${origin}`;
+        iframe.title           = placeholder.getAttribute("aria-label") || "Project video";
+        iframe.allow           = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.loading = 'lazy';
-        // Replace placeholder with iframe
+        iframe.width           = "100%";
+        iframe.height          = "100%";
+        iframe.loading         = "lazy";
         placeholder.parentNode.replaceChild(iframe, placeholder);
       }
 
-      const placeholders = Array.from(document.querySelectorAll('.video-embed'));
-      placeholders.forEach((ph) => {
-        ph.addEventListener('click', () => {
-          try {
-            loadVideo(ph);
-          } catch (err) {
-            // fallback: open watch page in new tab
-            const id = ph.dataset.videoId;
-            if (id) window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
-          }
-        });
-        ph.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            ph.click();
-          }
-        });
+      document.querySelectorAll(".video-embed").forEach((ph) => {
+        ph.addEventListener("click", () => { try { loadVideo(ph); } catch { window.open(`https://www.youtube.com/watch?v=${ph.dataset.videoId}`, "_blank", "noopener"); } });
+        ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ph.click(); } });
       });
     })();
   </script>

@@ -458,6 +458,53 @@
       gap: 1.75rem;
     }
 
+    /* ─── Testimonials ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-subtle);
+      transition: transform var(--transition-med), box-shadow var(--transition-med);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      margin: 0 0 1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .testimonial-author {
+      display: block;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--accent-strong);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
     .project-card {
       position: relative;
       padding: 1.5rem 1.6rem;
@@ -924,6 +971,7 @@
 
       .nav__toggle { display: flex; }
       .projects-grid { grid-template-columns: 1fr !important; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
       .video-grid { grid-template-columns: 1fr !important; }
       .carousel-slide img { aspect-ratio: 16 / 9; max-height: 420px; }
       .page-shell, .section, .projects-grid { max-width: 100vw; }
@@ -949,6 +997,7 @@
             <li><a href="#projects" class="nav__link">Projects</a></li>
             <li><a href="#skills" class="nav__link">Skills</a></li>
             <li><a href="#experience" class="nav__link">Experience</a></li>
+            <li><a href="#testimonials" class="nav__link">Testimonials</a></li>
             <li><a href="#contact" class="nav__link">Contact</a></li>
           </ul>
         </div>
@@ -1360,6 +1409,116 @@
                 performance, and user experience in hardware products.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Testimonials ─── -->
+      <section id="testimonials" class="section section--padded section--alt reveal">
+        <div class="section__header">
+          <h2>Testimonials</h2>
+          <p>What clients say about working with me on Fiverr.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Albert delivered exceptional PCB designs that exceeded our expectations. His attention to detail and timely delivery made our project a success."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">John Doe</span>
+              <span class="testimonial-role">Startup Founder</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Highly skilled in embedded systems. Albert's firmware was robust and efficient, saving us time and resources."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Jane Smith</span>
+              <span class="testimonial-role">Product Manager</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Great communication and expertise in mechanical design. Our enclosure prototype was perfect."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Mike Johnson</span>
+              <span class="testimonial-role">Engineer</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Albert helped us go from concept to manufacturable hardware. Professional and reliable."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Sarah Lee</span>
+              <span class="testimonial-role">CEO</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Outstanding work on our IoT device. Albert's knowledge of connectivity protocols was invaluable."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">David Kim</span>
+              <span class="testimonial-role">Tech Lead</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Fast turnaround and high-quality schematics. Would recommend to any hardware team."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Emily Chen</span>
+              <span class="testimonial-role">Hardware Engineer</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Albert's PCB layout was flawless, and he provided great documentation for production."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Robert Taylor</span>
+              <span class="testimonial-role">Manufacturing Manager</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Excellent problem-solving skills. Helped debug our embedded system issues quickly."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Lisa Wong</span>
+              <span class="testimonial-role">Developer</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Professional service from start to finish. Our smart switch project was a hit."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Alex Patel</span>
+              <span class="testimonial-role">Entrepreneur</span>
+            </cite>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              "Albert's expertise in low-power design helped us extend our device's battery life significantly."
+            </blockquote>
+            <cite class="testimonial-author">
+              <span class="testimonial-name">Maria Garcia</span>
+              <span class="testimonial-role">Product Designer</span>
+            </cite>
           </div>
         </div>
       </section>

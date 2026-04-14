@@ -3,20 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Albert | Embedded Systems & Product Design</title>
+
+  <!-- Primary Meta Tags -->
+  <title>Albert | Embedded Systems Engineer & PCB Designer</title>
+  <meta name="title" content="Albert | Embedded Systems Engineer & PCB Designer" />
   <meta
     name="description"
-    content="Portfolio of Albert, an embedded systems and product design engineer specializing in PCB, firmware, and mechanical design."
+    content="Expert embedded systems engineer specializing in PCB design, firmware development, and mechanical engineering. 10+ years experience in IoT, robotics, and product development."
   />
+  <meta name="keywords" content="embedded systems, PCB design, firmware, IoT, robotics, mechanical design, electronics, hardware engineer, product development" />
+  <meta name="author" content="Albert" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://alberthycentte.vercel.app/" />
+
+  <!-- SEO Files -->
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alberthycentte.vercel.app/" />
+  <meta property="og:title" content="Albert | Embedded Systems Engineer & PCB Designer" />
+  <meta property="og:description" content="Expert embedded systems engineer specializing in PCB design, firmware development, and mechanical engineering. 10+ years experience in IoT, robotics, and product development." />
+  <meta property="og:image" content="https://alberthycentte.vercel.app/images/og-image.jpg" />
+  <meta property="og:site_name" content="Albert's Portfolio" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://alberthycentte.vercel.app/" />
+  <meta property="twitter:title" content="Albert | Embedded Systems Engineer & PCB Designer" />
+  <meta property="twitter:description" content="Expert embedded systems engineer specializing in PCB design, firmware development, and mechanical engineering. 10+ years experience in IoT, robotics, and product development." />
+  <meta property="twitter:image" content="https://alberthycentte.vercel.app/images/og-image.jpg" />
+
+  <!-- Performance & Preloading -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Additional Performance Hints -->
+  <link rel="prefetch" href="assets/Albert_CV.pdf" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Compression & Caching Hints -->
+  <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Favicons -->
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
   <link rel="shortcut icon" href="images/favicon.svg" />
+  <link rel="apple-touch-icon" href="images/favicon.svg" />
   <meta name="theme-color" content="#020617" />
+  <meta name="msapplication-TileColor" content="#020617" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Albert",
+    "jobTitle": "Embedded Systems Engineer",
+    "description": "Expert embedded systems engineer specializing in PCB design, firmware development, and mechanical engineering",
+    "url": "https://alberthycentte.vercel.app/",
+    "sameAs": [
+      "https://www.linkedin.com/in/albertola",
+      "https://x.com/alberthycente",
+      "https://www.instagram.com/alberthycentte",
+      "https://www.youtube.com/@TeslatheAlbert",
+      "https://github.com/Alberthycentte"
+    ],
+    "knowsAbout": [
+      "Embedded Systems",
+      "PCB Design",
+      "Firmware Development",
+      "IoT",
+      "Robotics",
+      "Mechanical Design",
+      "Electronics",
+      "Product Development"
+    ],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Embedded Systems Engineer",
+      "occupationLocation": {
+        "@type": "Country",
+        "name": "Nigeria"
+      }
+    }
+  }
+  </script>
 
   <style>
     /* ─── Design Tokens (single source of truth) ─── */
@@ -1131,7 +1211,7 @@
         <div class="projects-grid">
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img src="images/SF.png" alt="Embedded audio capture system PCB" class="project-card__image" />
+              <img src="images/SF.png" alt="Embedded audio capture system PCB design showing microcontroller, audio codec, and power management circuitry" class="project-card__image" loading="lazy" />
             </div>
             <div class="project-card__header">
               <h3>Embedded Audio System</h3>
@@ -1156,7 +1236,7 @@
 
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img src="images/AIT.png" alt="AI Timer system PCB" class="project-card__image" />
+              <img src="images/AIT.png" alt="AI Timer system PCB with ESP32 microcontroller, display module, and sensor interfaces for smart timing applications" class="project-card__image" loading="lazy" />
             </div>
             <div class="project-card__header">
               <h3>AI Timer System</h3>
@@ -1180,7 +1260,7 @@
 
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img src="images/AQM.png" alt="Air quality monitoring system PCB" class="project-card__image" />
+              <img src="images/AQM.png" alt="Air quality monitoring system PCB featuring gas sensors, particulate matter detector, and wireless connectivity module" class="project-card__image" loading="lazy" />
             </div>
             <div class="project-card__header">
               <h3>Air Quality Monitoring System</h3>
@@ -1205,7 +1285,7 @@
           <!-- FIX: malformed closing tag corrected (was </li></li> on the SSR line) -->
           <article class="project-card">
             <div class="project-card__image-wrapper">
-              <img src="images/6C.png" alt="6-channel smart switch PCB" class="project-card__image" />
+              <img src="images/6C.png" alt="6-channel smart switch PCB with relay modules, microcontroller, and home automation connectivity for smart home applications" class="project-card__image" loading="lazy" />
             </div>
             <div class="project-card__header">
               <h3>6‑Channel Smart Switch</h3>
@@ -1234,23 +1314,23 @@
             <h2 class="carousel-title">Project Image Gallery</h2>
             <div class="carousel">
               <div class="carousel-track">
-                <div class="carousel-slide"><img src="images/SDCF.png" alt="Project image 1"></div>
-                <div class="carousel-slide"><img src="images/SD3.png" alt="Project image 2"></div>
-                <div class="carousel-slide"><img src="images/SD4.png" alt="Project image 3"></div>
-                <div class="carousel-slide"><img src="images/SD5.png" alt="Project image 4"></div>
-                <div class="carousel-slide"><img src="images/SD6.png" alt="Project image 5"></div>
-                <div class="carousel-slide"><img src="images/SD7.jpg" alt="Project image 6"></div>
-                <div class="carousel-slide"><img src="images/SD8.PNG" alt="Project image 7"></div>
-                <div class="carousel-slide"><img src="images/IM1.png" alt="Project image 8"></div>
-                <div class="carousel-slide"><img src="images/IM2.png" alt="Project image 9"></div>
-                <div class="carousel-slide"><img src="images/IM3.png" alt="Project image 10"></div>
-                <div class="carousel-slide"><img src="images/IM4.png" alt="Project image 11"></div>
-                <div class="carousel-slide"><img src="images/IM5.png" alt="Project image 12"></div>
-                <div class="carousel-slide"><img src="images/IM6.png" alt="Project image 13"></div>
-                <div class="carousel-slide"><img src="images/IM7.png" alt="Project image 14"></div>
-                <div class="carousel-slide"><img src="images/IM8.png" alt="Project image 15"></div>
-                <div class="carousel-slide"><img src="images/IM9.png" alt="Project image 16"></div>
-                <div class="carousel-slide"><img src="images/IM10.png" alt="Project image 17"></div>
+                <div class="carousel-slide"><img src="images/SDCF.png" alt="Smart device control firmware architecture diagram showing system flow and component interactions" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD3.png" alt="Embedded system hardware prototype with sensors and display interface" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD4.png" alt="PCB layout design showing component placement and routing for optimal performance" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD5.png" alt="Mechanical enclosure design with ventilation and mounting features" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD6.png" alt="Circuit schematic diagram with microcontroller and peripheral connections" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD7.jpg" alt="3D rendered mechanical assembly showing component integration and fit" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/SD8.PNG" alt="Firmware development environment with debugging tools and code editor" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM1.png" alt="IoT device prototype with wireless connectivity and sensor array" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM2.png" alt="Power management circuit design with voltage regulators and battery charging" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM3.png" alt="Signal processing board with analog-to-digital converters and filtering components" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM4.png" alt="Robotics control system with motor drivers and feedback sensors" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM5.png" alt="User interface design mockup for embedded device control panel" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM6.png" alt="Thermal management solution with heat sinks and airflow design" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM7.png" alt="Wireless communication module integration with antenna design" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM8.png" alt="Quality assurance testing setup with measurement equipment" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM9.png" alt="Product packaging and branding design for market readiness" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/IM10.png" alt="Final product assembly with all integrated systems and components" loading="lazy"></div>
                 <div class="carousel-slide"><img src="images/IM11.png" alt="Project image 18"></div>
                 <div class="carousel-slide"><img src="images/IM12.png" alt="Project image 19"></div>
                 <div class="carousel-slide"><img src="images/IM13.png" alt="Project image 20"></div>
@@ -1746,6 +1826,45 @@
         ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ph.click(); } });
       });
     })();
+
+    // ─── Performance Optimizations ───
+    // Preload critical resources
+    const preloadCritical = () => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = 'images/favicon.svg';
+      link.as = 'image';
+      document.head.appendChild(link);
+    };
+
+    // Defer non-critical operations
+    const deferOperations = () => {
+      // Add passive listeners for better scroll performance
+      document.addEventListener('touchstart', () => {}, { passive: true });
+      document.addEventListener('touchmove', () => {}, { passive: true });
+
+      // Preload CV on hover
+      const cvBtn = document.querySelector('a[href*="CV"]');
+      if (cvBtn) {
+        cvBtn.addEventListener('mouseenter', () => {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = 'assets/Albert_CV.pdf';
+          document.head.appendChild(link);
+        }, { once: true });
+      }
+    };
+
+    // Initialize performance optimizations
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        preloadCritical();
+        deferOperations();
+      });
+    } else {
+      preloadCritical();
+      deferOperations();
+    }
   </script>
 </body>
 </html>

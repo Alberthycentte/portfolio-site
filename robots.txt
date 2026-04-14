@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Block access to assets that shouldn't be indexed
+Disallow: /assets/
+Disallow: /images/
+Disallow: /*.pdf$
+
+# Sitemap
+Sitemap: https://alberthycentte.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
